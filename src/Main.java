@@ -11,7 +11,7 @@ public class Main {
         while(isRunning){
             displayMenu();
             int choice = scanner.nextInt();
-
+            System.out.println(); //just for good-looking in console
             switch (choice){
                 case 1:
                     account.viewBalance();
@@ -46,7 +46,49 @@ public class Main {
     }
 
     private static void addTransaction() {
+        System.out.print("Enter transaction amount: ");
+        double amount = scanner.nextDouble();
+        scanner.nextLine(); // Consume newline character
 
+        String type = null;
+        boolean validType = false;
+        while (!validType) {
+            System.out.print("Select transaction type \n1. Income \n2. Expense: ");
+            int choice = scanner.nextInt();
+            if (choice == 1) {
+                type = "Income";
+                validType = true;
+            } else if (choice == 2) {
+                type = "Expense";
+                validType = true;
+            } else {
+                System.out.println("Invalid syntax, please select correct");
+            }
+        }
+
+        String moneyType = null;
+        boolean validMoneyType = false;
+        while (!validMoneyType) {
+            System.out.print("Select transaction type \n1. Card \n2. Cash: ");
+            int moneyChoice = scanner.nextInt();
+            if (moneyChoice == 1) {
+                moneyType = "Card";
+                validMoneyType = true;
+            } else if (moneyChoice == 2) {
+                moneyType = "Cash";
+                validMoneyType = true;
+            } else {
+                System.out.println("Invalid syntax, please select correct");
+            }
+        }
+
+        System.out.println("Enter transaction description: ");
+        String description = scanner.next();
+
+        Transaction transaction = new Transaction(amount, type, description, moneyType);
+        account.addTransaction(transaction);
+
+        System.out.println("Transaction added successfully.");
     }
 
 }

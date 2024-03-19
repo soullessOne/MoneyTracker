@@ -2,16 +2,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
-    private double balance = 0;
+    private double cashBalance;
+    private double cardBalance;
+    private double AllBalance ;
     private List<Transaction> transactions = new ArrayList<>();
 
-    public int viewBalance() {
-        return 0;
+    public void viewBalance() {
+
     }
 
     public void viewTransactions() {
+        System.out.println(transactions);
     }
 
     public void generateReport() {
+    }
+
+    public void addTransaction(Transaction transaction) {
+        transactions.add(transaction);
     }
 }
